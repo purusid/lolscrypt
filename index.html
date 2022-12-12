@@ -31,24 +31,26 @@
     <script src="lolscrypt.js"></script>
 </head>
 
-<body>
+<body onload="lolScrypt.onload()">
     <div class="top-layer" id="init">
         <div class="lolxd">
+            <div class="top-bar">
+                <img src="lolscrypt.png">
+                <div>LolScrypt</div>
+            </div>
             <div class="lol-ui-alist">
-                <a href="">
+                <a href="javascript:lolScrypt.createProject()">
                     <div>
-                        Chrono Gamerz on YouTube
+                        Create New Project
                     </div>
                     <img src="https://purusid.tk/ico/rt-arrow.png" alt="ARROW">
                 </a>
             </div>
-            <div class="lol-ui-alist">
-                <a href="">
-                    <div>
-                        Chrono Gamerz on YouTube
-                    </div>
-                    <img src="https://purusid.tk/ico/rt-arrow.png" alt="ARROW">
-                </a>
+            <div class="top-bar">
+                <img src="lolscrypt.png">
+                <div>Recent Projects</div>
+            </div>
+            <div class="lol-ui-alist" id="pls">
             </div>
         </div>
     </div>
@@ -57,7 +59,7 @@
             <img src="lolscrypt.png">
             <div>LolScrypt</div>
         </div>
-        <div class="lol-ui-left-nav">
+        <div class="lol-ui-left-nav" id="nav">
         </div>
         <textarea id="code">function(){lol='www'}</textarea>
     </div>

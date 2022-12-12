@@ -4,6 +4,11 @@
     box-sizing: border-box;
     font-family: 'fixedsys', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     transition: all .3s linear;
+    scrollbar-width: 0;
+}
+
+*::-webkit-scrollbar {
+    width: 0;
 }
 
 body {
@@ -31,20 +36,22 @@ a {
     width: 100%;
     background-color: #333;
     display: flex;
+    align-items: center;
     border-radius: 1em;
     margin-bottom: 1em;
 }
 
 .lol-ui-alist>a>div {
-    width: 84%;
-    margin: 3%;
+    width: 90%;
+    margin: 2.5%;
     font-weight: bold;
-    font-size: 2em;
 }
 
-.lol-ui-alist>a>img{
+.lol-ui-alist>a>img {
     width: 4%;
-    margin: 3%;
+    margin: 2.5%;
+    height: 4%;
+    padding: 0;
 }
 
 .web {
@@ -58,9 +65,9 @@ a {
     grid-template-rows: 4em calc(100vh - 4em);
 }
 
-.web>.top-bar {
+.top-bar {
     height: 4em;
-    width: 100vw;
+    width: 100%;
     background-color: #333;
     display: flex;
     grid-area: topbar;
