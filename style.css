@@ -92,7 +92,7 @@ a {
     height: calc(100vh - 4em);
     width: 30vmin;
     grid-area: nav;
-    background-color: #000;
+    background-color: #222;
     padding: .5em;
 }
 
@@ -101,10 +101,13 @@ a {
     line-height: 1em;
     padding: .25em;
     font-weight: bolder;
+    background-color: #333;
+    border-radius: .2em;
+    user-select: none;
 }
 
 .lol-ui-left-nav>div:hover {
-    background-color: #222;
+    background-color: #000;
 }
 
 #code {
