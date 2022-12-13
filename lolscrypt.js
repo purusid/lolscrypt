@@ -9,7 +9,9 @@ const lolScrypt = {
         dbVersion: parseInt(localStorage.getItem("dbVersion")),
         currentProject: "default"
     },
-    editors: class { },
+    editor: class {
+
+    },
     db: {
         writeFile: (data, callback) => {
             lolScrypt.init(function () {
@@ -44,7 +46,7 @@ const lolScrypt = {
                     };
                 }
                 else {
-                    console.error("Error: project not defined");
+                    console.error("Error: incorrect arguments");
                     if (callback)
                         callback(false);
                 }
@@ -166,7 +168,7 @@ const lolScrypt = {
         let n = prompt("Project Name:");
         if (confirm(`Confirm project creation with name '${n}':`)) {
             lolScrypt.defs.currentProject = n;
-            lolScrypt.db.writeFile({ file: { path: "/welcome.txt", base64data: "welcome" } });
+            lolScrypt.db.writeFile({ file: { path: "/welcome.txt", base64data: "welcome" } }, () => (lolScrypt.reloadFiles()));
         } else {
             return;
         }
@@ -182,7 +184,7 @@ const lolScrypt = {
     },
     setCurrentProject: (n) => {
         lolScrypt.defs.currentProject = n;
-        lolScrypt.init(lolScrypt.reloadFiles());
+        lolScrypt.init(() => (lolScrypt.reloadFiles()));
     },
     onload: () => {
         let pls = document.getElementById("pls");
@@ -192,5 +194,46 @@ const lolScrypt = {
     },
     createEditor(n, callback) {
         lolScrypt.db.readFile(n, (a) => { document.getElementById("code").innerText = a.base64data })
+    }
+}
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
     }
 }
