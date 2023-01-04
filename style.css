@@ -129,3 +129,27 @@ a {
     background-color: #000;
     z-index: 2;
 }
+
+.editor-resizer {
+    overflow: hidden;
+    height: 20vh;
+    width: 20vw;
+    opacity: 50%;
+    resize: both;
+    background-color: #333;
+    pointer-events: all;
+  }
+  
+  .wrap {
+    width: min-content;
+    position: absolute;
+  }
+  .x {
+    position: absolute;
+    bottom: -10px;
+    left: calc(100% - 20px);
+    line-height: 0;
+    color: red;
+    font-size: 10px;
+    pointer-events: none;
+  }
